@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
+import DomainTokenModel from '../models/domainToken';
 
-export const verifyToken = (
+export const verifyToken = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -10,19 +11,20 @@ export const verifyToken = (
     return;
   }
 
-  // Extrai o token diretamente
-  const token = req.headers.authorization.trim();
+  const token = req.headers.authorization.toString().trim();
+  const domain = req.headers.domain?.toString()?.trim() || '';
 
-  if (!isValidToken(token)) {
+  if (!isValidToken(domain, token)) {
     res.status(403).json({ error: 'Invalid or unauthorized token' });
     return;
   }
-
   next();
 };
 
-function isValidToken(token: string): boolean {
-  console.log(token);
-  const validTokens = ['yourToken1', 'yourToken2'];
-  return validTokens.includes(token);
+async function isValidToken(domain: string, token: string): Promise<boolean> {
+  const validDomain = await DomainTokenModel.findOne({
+    domain: domain,
+    tokens: token,
+  }).lean();
+  return !!validDomain?._id;
 }

@@ -22,14 +22,6 @@ db.then(() => {
 
 ⚠: para coisas que devo implementar ainda nessa branch
 
-- ⚠ configurar lint
-
-- ⚠ Testar rota /list
-
-- ⚠ Criar essa feat: Cada origem (domínio) deve ter um token de acesso exclusivo, 
-    que é recebido via header nas requisições. 
-    (criar rota para gerar token por domínio, deixar token de teste no .env)
-
 - ⚠ Validar todos os TODO
 
 - ⚠ Refactor inicial (limpar código etc)
@@ -39,6 +31,10 @@ db.then(() => {
 
 
 - Pegar dados diretamente do Plugin
+
+- implementar uma rota para remover tokens específicos.
+- Adicionar uma lógica para expirar tokens
+- armazenar os tokens de maneira segura no banco
 
 - testes unitários
 
