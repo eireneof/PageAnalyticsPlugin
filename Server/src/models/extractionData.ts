@@ -1,27 +1,27 @@
-import mongoose, { Schema, model, Document } from 'mongoose'
-import Joi from 'joi'
+import Joi from 'joi';
+import mongoose, { Schema, Document } from 'mongoose';
 
 const ExtractionDataSchema = new Schema({
   device: {
     type: String,
     enum: ['android', 'ios', 'desktop'],
-    required: true
+    required: true,
   },
   operatingSystem: {
     type: String,
-    required: true
+    required: true,
   },
   origin: {
     type: String,
-    required: true
+    required: true,
   },
   themeSwitchCount: {
     type: Number,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
-    required: true
+    required: true,
   },
   token: { type: String, required: true },
 });
@@ -45,4 +45,7 @@ export interface IExtractionData extends Document {
   createdAt: Date;
 }
 
-export default mongoose.model<IExtractionData>("ExtractionData", ExtractionDataSchema);
+export default mongoose.model<IExtractionData>(
+  'ExtractionData',
+  ExtractionDataSchema,
+);
