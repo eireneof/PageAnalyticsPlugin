@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
-    "build": "tsc",
+    "build": "tsc && tsc-alias && npx cpy \"src/public/**/*\" dist/public",
     "start:dev": "npm run build && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,9 +12,12 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "type": "module",
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.1",
+    "cpy-cli": "^5.0.0",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.7.2"
   },
   "dependencies": {

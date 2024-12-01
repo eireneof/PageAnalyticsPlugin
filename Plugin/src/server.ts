@@ -1,13 +1,33 @@
 import express, { Request, Response } from 'express';
+import { ServerConfig } from './interfaces/server-config.interface';
+import { FileService } from './interfaces/file-service.interface';
+import { ConfigService } from './config/server-config.js';
+import { StaticFileService } from './services/static-file.service.js';
 
-const app = express();
+class Server {
+  private app: express.Application;
+  private config: ServerConfig;
+  private fileService: FileService;
 
-const port: string = process.env.PORT || '3000';
+  constructor() {
+    this.app = express();
+    const configService = new ConfigService();
+    this.config = configService.getConfig();
+    this.fileService = new StaticFileService(this.config);
+  }
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Plugin is running');
-});
+  setupMiddleware(): void {
+    this.fileService.servePublicFiles(this.app);
+    this.fileService.serveDataExtractorFiles(this.app);
+  }
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+  start(): void {
+    this.setupMiddleware();
+    this.app.listen(this.config.port, () => {
+      console.log(`Server running at http://localhost:${this.config.port}`);
+    });
+  }
+}
+
+const server = new Server();
+server.start();
