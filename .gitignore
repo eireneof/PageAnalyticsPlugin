@@ -1,0 +1,8 @@
+Server/node_modules
+Server/dist
+
+Plugin/node_modules
+Plugin/dist
+
+Page/node_modules
+Page/dist
