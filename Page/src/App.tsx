@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { ThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme } from './styles/theme';
+
 import GlobalStyles from './styles/globalStyles';
 import ProfilePage from './pages/Profile';
+import darkTheme from './styles/themes/custom/darkTheme';
+import lightTheme from './styles/themes/custom/lightTheme';
+
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
