@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
+import { HttpStatus } from './enums/httpStatusEnum';
 
 const rateLimiter = new RateLimiterMemory({
   points: 5, // Máximo de 5 requisições
   duration: 600, // 10 minutos
 });
 
-// TODO: tipar depois
 export const limitRequests = async (
   req: Request,
   res: Response,
@@ -17,6 +17,8 @@ export const limitRequests = async (
     await rateLimiter.consume(token);
     next();
   } catch (error) {
-    res.status(429).json({ message: 'Too many requests', error: error });
+    res
+      .status(HttpStatus.TOO_MANY_REQUESTS)
+      .json({ message: 'Too many requests', error: error });
   }
 };

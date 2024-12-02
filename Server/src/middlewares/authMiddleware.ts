@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import DomainTokenModel from '../models/domainToken';
+import { HttpStatus } from '../utils/enums/httpStatusEnum';
 
 export const verifyToken = async (
   req: Request,
@@ -7,7 +8,9 @@ export const verifyToken = async (
   next: NextFunction,
 ) => {
   if (!req.headers.authorization?.length) {
-    res.status(401).json({ error: 'Access token is required' });
+    res
+      .status(HttpStatus.UNAUTHORIZED)
+      .json({ error: 'Access token is required' });
     return;
   }
 
@@ -15,7 +18,9 @@ export const verifyToken = async (
   const domain = req.headers.domain?.toString()?.trim() || '';
 
   if (!isValidToken(domain, token)) {
-    res.status(403).json({ error: 'Invalid or unauthorized token' });
+    res
+      .status(HttpStatus.FORBIDDEN)
+      .json({ error: 'Invalid or unauthorized token' });
     return;
   }
   next();

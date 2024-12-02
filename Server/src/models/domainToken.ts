@@ -1,22 +1,10 @@
-import Joi from 'joi';
-import mongoose, { Schema, Document } from 'mongoose';
-
-interface IDomainToken extends Document {
-  domain: string;
-  tokens: string[];
-  createdAt: Date;
-}
-
-export const DomainTokenValidator = Joi.object({
-  domain: Joi.string().required(),
-  token: Joi.array(),
-  createdAt: Joi.date().required(),
-});
+import mongoose, { Schema } from 'mongoose';
+import { IDomainToken } from '../utils/interfaces/domainTokenInterface';
 
 const DomainTokenSchema = new Schema<IDomainToken>({
   domain: { type: String, required: true, unique: true },
   tokens: { type: [String], required: true, default: [] },
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: new Date() },
 });
 
 const DomainTokenModel = mongoose.model<IDomainToken>(

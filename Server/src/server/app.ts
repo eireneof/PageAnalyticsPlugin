@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
 import router from '../routes/apiRoutes';
-import { db } from '../config/db.config';
+import { db } from '../config/dbConfig';
 
 dotenv.config();
 

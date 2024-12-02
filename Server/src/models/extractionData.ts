@@ -1,10 +1,11 @@
-import Joi from 'joi';
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
+import { IExtractionData } from '../utils/interfaces/extractionDataInterface';
+import { DeviceType } from '../utils/enums/deviceTypeEnum';
 
 const ExtractionDataSchema = new Schema({
   device: {
     type: String,
-    enum: ['android', 'ios', 'desktop'],
+    enum: DeviceType,
     required: true,
   },
   operatingSystem: {
@@ -25,25 +26,6 @@ const ExtractionDataSchema = new Schema({
   },
   token: { type: String, required: true },
 });
-
-export const ExtractionDataValidator = Joi.object({
-  device: Joi.string().valid('android', 'ios', 'desktop').required(),
-  operatingSystem: Joi.string().required(),
-  origin: Joi.string().required(),
-  themeSwitchCount: Joi.number().required(),
-  createdAt: Joi.date().required(),
-  token: Joi.string().required(),
-});
-
-// TODO: ver se separo depois em outros arquivos interfaces, schemas, etc
-export interface IExtractionData extends Document {
-  device: string;
-  operatingSystem: string;
-  origin: string;
-  themeSwitchCount: number;
-  token: string;
-  createdAt: Date;
-}
 
 export default mongoose.model<IExtractionData>(
   'ExtractionData',
