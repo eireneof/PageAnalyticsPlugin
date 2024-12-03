@@ -15,9 +15,8 @@ export const verifyToken = async (
   }
 
   const token = req.headers.authorization.toString().trim();
-  const domain = req.headers.domain?.toString()?.trim() ?? '';
 
-  if (!(await isValidToken(domain, token))) {
+  if (!(await isValidToken(token))) {
     res
       .status(HttpStatus.FORBIDDEN)
       .json({ error: 'Invalid or unauthorized token' });
@@ -26,10 +25,7 @@ export const verifyToken = async (
   next();
 };
 
-async function isValidToken(domain: string, token: string): Promise<boolean> {
-  const validDomain = await DomainTokenModel.findOne({
-    domain: domain,
-    tokens: token,
-  }).lean();
-  return !!validDomain?._id;
+async function isValidToken(token: string): Promise<boolean> {
+  const tokenExist = await DomainTokenModel.find({ tokens: token }).lean();
+  return !!tokenExist;
 }

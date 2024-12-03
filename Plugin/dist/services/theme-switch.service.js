@@ -3,7 +3,9 @@ export default class ThemeSwitchService {
     button;
     constructor() {
         window.onload = () => {
-            this.button = document.getElementById('btn-theme-switch');
+            this.button = document.getElementById('theme-switch-button');
+            console.log('this.button');
+            console.log(document.getElementById('theme-switch-button'));
             this.setupClickListener();
         };
     }
@@ -16,7 +18,7 @@ export default class ThemeSwitchService {
         }
     }
     getCount() {
-        return parseInt(localStorage.getItem(this.STORAGE_KEY) || '0', 10);
+        return parseInt(localStorage.getItem(this.STORAGE_KEY) ?? '0', 10);
     }
     setCount(count) {
         localStorage.setItem(this.STORAGE_KEY, count.toString());

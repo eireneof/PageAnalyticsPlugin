@@ -10,7 +10,7 @@ export default function Button({
 }: IButton) {
   return (
     <StyledButton
-      id={`btn-${id}`}
+      id={id}
       data-testid={dataTestId}
       onClick={onClick}
       {...props}

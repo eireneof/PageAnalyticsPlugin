@@ -47,9 +47,10 @@ export class DataExtractor {
     // TODO: tratar timezone
     // TODO: trocar portas estáticas por portas configuradas no .env
     // TODO: criar superToken para funcionarem independente de domínio
+    // TODO: ajustar tratativa de token para permitir apenas 1 por domínio
     async saveData2(data) {
         const url = 'http://localhost:3001/api/collect'; // URL da API
-        const token = '9f96006aff29c22de5c8240fa51e811c46d387aa1f3fa0bf410f8b03da148709'; // Token Bearer
+        const token = '9432c3271314caaa5f29f248cf4513fb0f341a2864981b3cda69052c526ded97'; // Token Bearer
         try {
             const response = await fetch(url, {
                 method: 'POST', // Método POST para enviar os dados
@@ -59,8 +60,6 @@ export class DataExtractor {
                 },
                 body: JSON.stringify(data) // Convertendo os dados para JSON
             });
-            console.log("response");
-            console.log(response);
             if (!response.ok) {
                 throw new Error('Erro ao salvar os dados: ' + response.statusText);
             }

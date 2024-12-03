@@ -14,9 +14,4 @@ export const StyledButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => lighten(0.1, theme.colors.primary_300)};
   }
-
-  &:focus {
-    outline: 2px solid ${({ theme }) => theme.colors.neutral}; /* Destaque ao foco */
-    outline-offset: 2px;
-  }
 `

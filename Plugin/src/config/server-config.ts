@@ -10,9 +10,8 @@ export class ConfigService {
     const __dirname = path.dirname(__filename);
 
     this.config = {
-      port: process.env.PORT || '3000',
+      port: process.env.PORT ?? '3000',
       publicDir: path.join(__dirname, '../../public'),
-      // dataExtractorDir: path.join(__dirname, '../../data-extractor'),
       servicesDir: path.join(__dirname, '../../services')
     };
   }

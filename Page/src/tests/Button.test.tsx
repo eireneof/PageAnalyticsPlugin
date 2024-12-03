@@ -40,7 +40,7 @@ describe('Button Component', () => {
     )
 
     const button = screen.getByTestId(dataTestId)
-    expect(button).toHaveAttribute('id', `btn-${id}`)
+    expect(button).toHaveAttribute('id', id)
     expect(button).toHaveTextContent(label)
   })
 })

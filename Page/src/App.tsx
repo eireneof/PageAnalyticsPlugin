@@ -14,9 +14,7 @@ export default function App() {
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <GlobalStyles />
-      <ProfilePage
-        onToggleTheme={toggleTheme}
-      />
+      <ProfilePage onToggleTheme={toggleTheme} />
     </ThemeProvider>
   )
 }

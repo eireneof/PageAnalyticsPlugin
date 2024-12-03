@@ -7,6 +7,11 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     outline: 0;
   }
+
+      &:focus {
+      outline: 3px solid #FFFF00;
+      outline-offset: 2px;
+    }
     
   body {
     background: ${({ theme }) => theme.colors.secondary_100};
