@@ -11,7 +11,11 @@ export default function ProfilePage({ onToggleTheme }: ProfilePageProps) {
       <Header />
       <main>
         <ButtonContainer>
-          <Button id="theme-switch" onClick={onToggleTheme}>
+          <Button
+            id="theme-switch-button"
+            dataTestId="theme-switch-button"
+            onClick={onToggleTheme}
+          >
             Alternar Tema
           </Button>
         </ButtonContainer>

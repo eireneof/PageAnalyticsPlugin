@@ -1,9 +1,20 @@
 import { StyledButton } from './styles'
 import { IButton } from './interface'
 
-export default function Button({ id, children, onClick, ...props }: IButton) {
+export default function Button({
+  id,
+  children,
+  dataTestId,
+  onClick,
+  ...props
+}: IButton) {
   return (
-    <StyledButton id={`btn-${id}`} onClick={onClick} {...props}>
+    <StyledButton
+      id={`btn-${id}`}
+      data-testid={dataTestId}
+      onClick={onClick}
+      {...props}
+    >
       {children}
     </StyledButton>
   )
