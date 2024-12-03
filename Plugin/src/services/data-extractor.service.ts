@@ -9,13 +9,13 @@ export class DataExtractor {
     private button!: HTMLButtonElement;
     private styleService: ButtonStyleService;
     private deviceService: DeviceDetectionService;
-    private themeService: ThemeSwitchService;
+    private themeService!: ThemeSwitchService;
   
     constructor() {
       this.styleService = new ButtonStyleService();
       this.deviceService = new DeviceDetectionService();
-      this.themeService = new ThemeSwitchService();
       this.initializeButton();
+        this.themeService = new ThemeSwitchService();
     }
   
     private initializeButton(): void {
@@ -38,22 +38,57 @@ export class DataExtractor {
   
     private handleButtonClick(): void {
       try {
+        console.log(window.location)
         const data: ExtractedData = {
-          timestamp: new Date().toISOString(),
           device: this.deviceService.getDeviceType(),
           operatingSystem: this.deviceService.getOperatingSystem(),
-          origin: window.location.hostname,
-          themeSwitchCount: this.themeService.countThemeSwitches()
+          origin: window.location.host,
+          themeSwitchCount: this.themeService.getCurrentCount()
         };
   
         this.themeService.resetCount();
         this.updateButtonState('success');
-        this.saveData(data);
+        this.saveData2(data);
       } catch (error) {
         console.error('Erro ao extrair dados:', error);
         this.updateButtonState('error');
       }
     }
+
+    // TODO: tratar timezone
+    // TODO: trocar portas estáticas por portas configuradas no .env
+    // TODO: criar superToken para funcionarem independente de domínio
+    // TODO: ajustar tratativa de token para permitir apenas 1 por domínio
+
+    private async saveData2(data: ExtractedData): Promise<void> {
+      const url = 'http://localhost:3001/api/collect';  // URL da API
+  
+      const token = '9f96006aff29c22de5c8240fa51e811c46d387aa1f3fa0bf410f8b03da148709'; // Token Bearer
+  
+      try {
+          const response = await fetch(url, {
+              method: 'POST', // Método POST para enviar os dados
+              headers: {
+                  'Content-Type': 'application/json', // Definindo o tipo de conteúdo como JSON
+                  'Authorization': `${token}`, // Adicionando o cabeçalho de autorização
+              },
+              body: JSON.stringify(data) // Convertendo os dados para JSON
+          });
+
+          console.log("response")
+          console.log(response)
+  
+          if (!response.ok) {
+              throw new Error('Erro ao salvar os dados: ' + response.statusText);
+          }
+  
+          const result = await response.json();
+          console.log('Dados salvos com sucesso:', result);
+      } catch (error) {
+          console.error('Erro na requisição:', error);
+          this.updateButtonState('error');
+      }
+  }
   
     private updateButtonState(state: 'success' | 'error'): void {
       this.button.disabled = true;

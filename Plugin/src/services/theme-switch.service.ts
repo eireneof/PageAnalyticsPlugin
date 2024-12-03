@@ -1,21 +1,36 @@
-class ThemeSwitchService {
-   // TODO: edidtar isso aqui que tá errado 
-  countThemeSwitches(): number {
-      const clickCount = parseInt(localStorage.getItem('buttonClicks') || '0');
-      return clickCount;
-    }
-  
-    resetCount(): void {
-      localStorage.setItem('buttonClicks', '0');
-      const countDisplay = document.getElementById('clickCount');
-      if (countDisplay) {
-        countDisplay.textContent = '0';
-      }
-      const clickButton = document.getElementById('clickButton');
-      if (clickButton) {
-        clickButton.setAttribute('aria-label', 'Click counter. Current count: 0');
-      }
-    }
+export default class ThemeSwitchService {
+  private readonly STORAGE_KEY = 'theme-switch-count';
+  private button!: HTMLElement | null;
+
+  constructor() {
+    window.onload = () => {
+      this.button = document.getElementById('btn-theme-switch');
+      this.setupClickListener(); 
+  };
   }
 
-export default ThemeSwitchService;
+  public setupClickListener(): void {
+      if (this.button) {
+          this.button.addEventListener('click', () => {
+              const currentCount = this.getCount();
+              this.setCount(currentCount + 1);
+          });
+      }
+  }
+
+  private getCount(): number {
+      return parseInt(localStorage.getItem(this.STORAGE_KEY) || '0', 10);
+  }
+
+  private setCount(count: number): void {
+      localStorage.setItem(this.STORAGE_KEY, count.toString());
+  }
+
+  public getCurrentCount(): number {
+      return this.getCount();
+  }
+
+  public resetCount(): void {
+      this.setCount(0);
+  }
+}

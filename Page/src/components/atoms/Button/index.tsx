@@ -22,13 +22,14 @@ const StyledButton = styled.button`
 `
 
 interface IButton {
+  id: string
   children: React.ReactNode
   onClick?: () => void
 }
 
-export default function Button({ children, onClick, ...props }: IButton) {
+export default function Button({ id, children, onClick, ...props }: IButton) {
   return (
-    <StyledButton onClick={onClick} {...props}>
+    <StyledButton id={`btn-${id}`} onClick={onClick} {...props}>
       {children}
     </StyledButton>
   )

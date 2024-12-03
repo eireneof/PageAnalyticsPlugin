@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Extractor Plugin Test</title>
+  <style>
+    .click-counter {
+        position: fixed;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    #clickButton {
+        padding: 15px 30px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    #clickButton:hover {
+        background-color: #45a049;
+    }
+
+    #clickButton:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
+        border-color: #4CAF50;
+    }
+
+    #clickButton:active {
+        transform: translateY(1px);
+    }
+</style>
+</head>
+<body>
+  <h1>Test Page for Data Extractor Plugin</h1>
+  <div class="click-counter" role="region" aria-label="Click Counter">
+    <button 
+        id="clickButton"
+        aria-label="Increment click counter"
+        role="button"
+        tabindex="0"
+        aria-live="polite"
+        aria-atomic="true"
+    >
+        Click me!
+    </button>
+</div>
+  <script type="module" src="/dist/services/data-extractor.service.js"></script>
+  <script type="module" src="/dist/services/button-accessibility.service.js"></script>
+  <script type="module" src="/dist/services/button-style.service.js"></script>
+  <script type="module" src="/dist/services/device-detection.service.js"></script>
+  <script type="module" src="/dist/services/static-file.service.js"></script>
+  <script type="module" src="/dist/services/theme-switch.service.js"></script>
+</body>
+</html>

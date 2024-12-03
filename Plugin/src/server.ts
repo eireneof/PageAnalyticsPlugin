@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import cors from 'cors';
 import { ServerConfig } from './interfaces/server-config.interface';
 import { FileService } from './interfaces/file-service.interface';
 import { ConfigService } from './config/server-config.js';
@@ -11,6 +12,7 @@ class Server {
 
   constructor() {
     this.app = express();
+    this.app.use(cors());
     const configService = new ConfigService();
     this.config = configService.getConfig();
     this.fileService = new StaticFileService(this.config);
@@ -23,6 +25,7 @@ class Server {
 
   start(): void {
     this.setupMiddleware();
+    this.app.use('/dist', express.static('/dist'));
     this.app.listen(this.config.port, () => {
       console.log(`Server running at http://localhost:${this.config.port}`);
     });

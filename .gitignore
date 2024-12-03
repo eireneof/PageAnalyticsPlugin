@@ -3,7 +3,7 @@ Server/dist
 Server/.vscode
 
 Plugin/node_modules
-Plugin/dist
+# Plugin/dist
 Plugin/.vscode
 
 Page/node_modules

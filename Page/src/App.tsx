@@ -31,3 +31,4 @@ export default App
 // TODO: teste de leitor de tela
 // TODO: teste de zoom e responsividade
 // TODO: mockar dados
+// TODO: deixar tema armazenado em contexto

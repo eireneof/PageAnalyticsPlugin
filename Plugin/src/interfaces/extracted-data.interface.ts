@@ -1,5 +1,5 @@
 export interface ExtractedData {
-    timestamp: string;
+    // timestamp: string;
     device: string;
     operatingSystem: string;
     origin: string;
