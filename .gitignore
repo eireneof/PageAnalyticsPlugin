@@ -9,3 +9,4 @@ Plugin/.vscode
 Page/node_modules
 Page/dist
 Page/.vscode
+Page/coverage
