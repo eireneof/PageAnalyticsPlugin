@@ -21,14 +21,12 @@ function App() {
 
 export default App
 
-// TODO: configurar prettier
+
+// TODO: 3 - definir padrão de projeto
+// TODO: 4 - teste unitário
+
+
 // TODO: refatorar para atomic desing
 // TODO: separar em styles, interfaces e etc
-// TODO: implementar wcag
-// TODO: ver como fazer teste de acessibilidade
-// TODO: teste de contraste
-// TODO: teste de navegação pelo teclado
-// TODO: teste de leitor de tela
-// TODO: teste de zoom e responsividade
 // TODO: mockar dados
 // TODO: deixar tema armazenado em contexto

@@ -10,11 +10,14 @@ const colors: IColors = {
   secondary_200: '#000', // preto
   neutral: '#E1E1E1',
   none: 'none',
+  white: '#FFF',
+  black: '#000',
 }
 
 const lightTheme: DefaultTheme = {
   ...defaultTheme,
   colors,
+  themeKey: 'lightTheme',
 }
 
 export default lightTheme

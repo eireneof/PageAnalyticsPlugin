@@ -4,46 +4,68 @@ import Card from '../../molecules/Card'
 
 export default function AboutMeCard() {
   return (
-    <Card id="card-sobre-mim">
+    <Card
+      id="card-sobre-mim"
+      accessibleName="Informações sobre o usuário"
+      tabIndex={0}
+    >
       <S.CardHeader>
         <Title
           id="card-sobre-mim-title"
-          accessibleName="Título do card"
+          accessibleName="Sobre mim"
           tag="h2"
+          tabIndex={0}
         >
           Sobre mim
         </Title>
 
         <S.DescriptionText
-          aria-label="Descrição detalhada sobre o usuário"
+          tabIndex={0}
+          aria-label="Descrição sobre o usuário: Qualquer conteúdo textual inventado da sua preferência"
           className="readable-text"
-          role="contentinfo"
         >
           Qualquer conteúdo textual inventado da sua preferência
         </S.DescriptionText>
       </S.CardHeader>
 
       <S.CardContent>
-        <S.CardSection aria-labelledby="habilidades-title">
-          <Title id="habilidades-title" accessibleName="Habilidades" tag="h3">
+        <S.CardSection>
+          <Title
+            id="habilidades-title"
+            accessibleName="Habilidades"
+            tag="h3"
+            tabIndex={0}
+          >
             Habilidades
           </Title>
         </S.CardSection>
 
-        <S.CardSection aria-labelledby="ferramentas">
-          <Title id="ferramentas-title" accessibleName="Ferramentas" tag="h4">
+        <S.CardSection>
+          <Title
+            id="ferramentas-title"
+            accessibleName="Lista de Ferramentas"
+            tag="h4"
+            tabIndex={0}
+          >
             Ferramentas
           </Title>
-          <S.StyledList role="list" aria-labelledby="ferramentas-title">
-            <li>Sketch</li>
+          <S.StyledList role="list">
+            <li role="listitem" tabIndex={0}>
+              Sketch
+            </li>
           </S.StyledList>
         </S.CardSection>
 
-        <S.CardSection aria-labelledby="metodologias-title">
-          <Title id="metodologias-title" accessibleName="Metodologias" tag="h4">
+        <S.CardSection>
+          <Title
+            id="metodologias-title"
+            accessibleName="Lista de metodologias"
+            tag="h4"
+            tabIndex={0}
+          >
             Metodologias
           </Title>
-          <S.StyledList role="list" aria-labelledby="metodologias-title">
+          <S.StyledList role="list">
             <li role="listitem" tabIndex={0}>
               Duplo Diamante
             </li>
@@ -53,15 +75,16 @@ export default function AboutMeCard() {
           </S.StyledList>
         </S.CardSection>
 
-        <S.CardSection aria-labelledby="banco-de-dados-title">
+        <S.CardSection>
           <Title
             id="banco-de-dados-title"
-            accessibleName="Banco de dados"
+            accessibleName="Lista de banco de dados"
             tag="h4"
+            tabIndex={0}
           >
             Banco de dados
           </Title>
-          <S.StyledList role="list" aria-labelledby="banco-de-dados-title">
+          <S.StyledList role="list">
             <li role="listitem" tabIndex={0}>
               Firebase
             </li>

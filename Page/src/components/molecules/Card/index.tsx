@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 interface CardProps {
   id: string
-  children: React.ReactNode // O conteúdo que será passado para o Card     // Border radius opcional
+  children: React.ReactNode
+  accessibleName?: string
+  tabIndex?: number
 }
 
 const StyledCard = styled.div<CardProps>`
@@ -14,6 +16,20 @@ const StyledCard = styled.div<CardProps>`
   box-sizing: border-box;
 `
 
-export default function Card({ id, children }: CardProps) {
-  return <StyledCard id={id}>{children}</StyledCard>
+export default function Card({
+  id,
+  children,
+  accessibleName,
+  tabIndex,
+}: CardProps) {
+  return (
+    <StyledCard
+      id={id}
+      aria-hidden="false"
+      tabIndex={tabIndex}
+      aria-label={accessibleName}
+    >
+      {children}
+    </StyledCard>
+  )
 }

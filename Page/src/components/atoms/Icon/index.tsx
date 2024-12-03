@@ -9,16 +9,20 @@ export default function Icon({
   accessibleName,
   isDecorative = true,
   alt,
-  // color='secondary_200',
+  role,
+  tabIndex,
   ...props
 }: IconProps) {
-  // TODO: ver como mudar a cor do ícone quando o theme mudar
   return (
     <StyledImg
+      id={id}
+      role={role}
       src={ICON_PATH[iconType]}
       alt={!isDecorative ? alt : ''}
       aria-hidden={isDecorative ? 'true' : 'false'}
+      aria-label={accessibleName}
       size={size}
+      tabIndex={tabIndex}
       {...props}
     />
   )

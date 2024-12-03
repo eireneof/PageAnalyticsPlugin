@@ -9,10 +9,14 @@ export default function ProfilePage({ onToggleTheme }: ProfilePageProps) {
   return (
     <>
       <Header />
-      <ButtonContainer>
-        <Button id="theme-switch" onClick={onToggleTheme}>Alternar Tema</Button>
-      </ButtonContainer>
-      <Profile />
+      <main>
+        <ButtonContainer>
+          <Button id="theme-switch" onClick={onToggleTheme}>
+            Alternar Tema
+          </Button>
+        </ButtonContainer>
+        <Profile />
+      </main>
       <Footer />
     </>
   )

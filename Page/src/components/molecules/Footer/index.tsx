@@ -10,10 +10,14 @@ const FooterContainer = styled.footer`
   width: 100%;
 `
 
+const Text = styled.p`
+  color: ${({ theme }) => theme.colors.white};
+`
+
 export default function Footer() {
   return (
     <FooterContainer>
-      <text>Desafio para Hand Talk</text>
+      <Text>Desafio para Hand Talk</Text>
     </FooterContainer>
   )
 }
