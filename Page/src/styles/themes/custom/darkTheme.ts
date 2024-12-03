@@ -10,11 +10,14 @@ const colors: IColors = {
   secondary_200: '#FFF',
   neutral: '#E1E1E1',
   none: 'none',
+  white: '#FFF',
+  black: '#000',
 }
 
 const darkTheme: DefaultTheme = {
   ...defaultTheme,
   colors,
+  themeKey: 'darkTheme',
 }
 
 export default darkTheme

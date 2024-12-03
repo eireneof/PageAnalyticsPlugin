@@ -1,19 +1,9 @@
-import styled from 'styled-components'
-
-const FooterContainer = styled.footer`
-  background-color: ${({ theme }) => theme.colors.primary_200};
-  color: ${({ theme }) => theme.colors.secondary_100};
-  text-align: center;
-  padding: ${({ theme }) => theme.padding.size.large};
-  position: relative;
-  bottom: 0;
-  width: 100%;
-`
+import * as S from './styles'
 
 export default function Footer() {
   return (
-    <FooterContainer>
-      <text>Desafio para Hand Talk</text>
-    </FooterContainer>
+    <S.FooterContainer>
+      <S.Text>Desafio para Hand Talk</S.Text>
+    </S.FooterContainer>
   )
 }

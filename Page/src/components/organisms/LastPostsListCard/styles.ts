@@ -6,10 +6,15 @@ export const StyledList = styled.ul`
 `
 
 export const StyledItemList = styled.li`
-  text-decoration: underline;
-  text-underline-offset: ${({ theme }) => theme.gridSpace.spacing_XXXS};
   margin-top: ${({ theme }) => theme.gridSpace.spacing_XXS};
   height: ${({ theme }) => theme.gridSpace.spacing_XXXL};
+  cursor: not-allowed;
+`
+
+export const BlockedLink = styled.a`
+  text-decoration: underline;
+  text-underline-offset: ${({ theme }) => theme.gridSpace.spacing_XXXS};
+  pointer-events: none;
 `
 
 export const CardHeader = styled.div`

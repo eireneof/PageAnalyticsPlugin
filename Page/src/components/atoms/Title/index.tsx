@@ -6,16 +6,17 @@ export default function Title({
   children,
   accessibleName,
   isDecorative = false,
-  titleType = 'huge',
+  tabIndex,
 }: TitleProps) {
   const Tag = tag
   return (
-    <StyledTitle role="title" titleType={titleType}>
+    <StyledTitle>
       <Tag
         aria-hidden={isDecorative ? 'true' : undefined}
         aria-label={
           accessibleName && !isDecorative ? accessibleName : undefined
         }
+        tabIndex={tabIndex}
       >
         {children}
       </Tag>

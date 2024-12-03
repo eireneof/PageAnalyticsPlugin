@@ -5,6 +5,8 @@ export type IColors = {
   secondary_100: string
   secondary_200: string
   neutral: string
+  white: string
+  black: string
   none: string
 }
 

@@ -5,6 +5,7 @@ export default function Header() {
   return (
     <HeaderContainer>
       <Icon
+        role="img"
         id="menu-hamburguer"
         iconType="MENU_HAMBURGUER"
         isDecorative={true}
