@@ -24,12 +24,14 @@ export default function AboutMeCard() {
       </S.CardHeader>
 
       <S.CardContent>
-        <Title id="habilidades-title" accessibleName="Habilidades" tag="h3">
-          Habilidades
-        </Title>
+        <S.CardSection aria-labelledby="habilidades-title">
+          <Title id="habilidades-title" accessibleName="Habilidades" tag="h3">
+            Habilidades
+          </Title>
+        </S.CardSection>
 
         <S.CardSection aria-labelledby="ferramentas">
-          <Title id="ferramentas-title" accessibleName="Habilidades" tag="h3">
+          <Title id="ferramentas-title" accessibleName="Ferramentas" tag="h4">
             Ferramentas
           </Title>
           <S.StyledList role="list" aria-labelledby="ferramentas-title">
