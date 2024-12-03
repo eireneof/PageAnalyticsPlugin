@@ -1,8 +1,11 @@
 Server/node_modules
 Server/dist
+Server/.vscode
 
 Plugin/node_modules
 Plugin/dist
+Plugin/.vscode
 
 Page/node_modules
 Page/dist
+Page/.vscode
