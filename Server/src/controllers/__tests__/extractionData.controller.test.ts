@@ -3,108 +3,102 @@ import { HttpStatus } from '../../utils/enums/httpStatusEnum';
 import { ExtractionDataService } from '../../services/extractionDataService';
 import { collectData, listData } from '../extractionDataController';
 
-
-
 jest.mock('../../services/extractionDataService');
 
 describe('ExtractionDataController', () => {
-    let mockRequest: Partial<Request>;
-    let mockResponse: Partial<Response>;
-    let responseObject = {};
+  let mockRequest: Partial<Request>;
+  let mockResponse: Partial<Response>;
+  let responseObject = {};
 
-    beforeEach(() => {
-        mockRequest = {
-            body: {
-                device: 'desktop',
-                operatingSystem: 'Windows',
-                origin: 'test.com',
-                themeSwitchCount: 0
-            },
-            header: jest.fn().mockReturnValue('Bearer token123'),
-            query: {}
-        };
+  beforeEach(() => {
+    mockRequest = {
+      body: {
+        device: 'desktop',
+        operatingSystem: 'Windows',
+        origin: 'test.com',
+        themeSwitchCount: 0,
+      },
+      header: jest.fn().mockReturnValue('Bearer token123'),
+      query: {},
+    };
 
-        mockResponse = {
-            status: jest.fn().mockReturnThis(),
-            json: jest.fn().mockImplementation((result) => {
-                responseObject = result;
-            })
-        };
+    mockResponse = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn().mockImplementation((result) => {
+        responseObject = result;
+      }),
+    };
+  });
+
+  describe('collectData', () => {
+    it('should collect data successfully', async () => {
+      const mockResult = {
+        status: HttpStatus.CREATED,
+        body: { message: 'Data collected' },
+      };
+
+      (ExtractionDataService.collectData as jest.Mock).mockResolvedValue(
+        mockResult,
+      );
+
+      await collectData(mockRequest as Request, mockResponse as Response);
+
+      expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.CREATED);
+      expect(mockResponse.json).toHaveBeenCalledWith(mockResult.body);
     });
 
-    describe('collectData', () => {
-        it('should collect data successfully', async () => {
-            const mockResult = {
-                status: HttpStatus.CREATED,
-                body: { message: 'Data collected' }
-            };
+    it('should handle missing authorization', async () => {
+      mockRequest.header = jest.fn().mockReturnValue(undefined);
 
-            (ExtractionDataService.collectData as jest.Mock).mockResolvedValue(mockResult);
+      const mockResult = {
+        status: HttpStatus.UNAUTHORIZED,
+        body: { error: 'No token provided' },
+      };
 
-            await collectData(
-                mockRequest as Request,
-                mockResponse as Response
-            );
+      (ExtractionDataService.collectData as jest.Mock).mockResolvedValue(
+        mockResult,
+      );
 
-            expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.CREATED);
-            expect(mockResponse.json).toHaveBeenCalledWith(mockResult.body);
-        });
+      await collectData(mockRequest as Request, mockResponse as Response);
 
-        it('should handle missing authorization', async () => {
-            mockRequest.header = jest.fn().mockReturnValue(undefined);
+      expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.UNAUTHORIZED);
+    });
+  });
 
-            const mockResult = {
-                status: HttpStatus.UNAUTHORIZED,
-                body: { error: 'No token provided' }
-            };
+  describe('listData', () => {
+    it('should list data successfully', async () => {
+      mockRequest.query = { token: 'token123' };
 
-            (ExtractionDataService.collectData as jest.Mock).mockResolvedValue(mockResult);
+      const mockResult = {
+        status: HttpStatus.OK,
+        body: [{ id: 1, data: 'test' }],
+      };
 
-            await collectData(
-                mockRequest as Request,
-                mockResponse as Response
-            );
+      (ExtractionDataService.listData as jest.Mock).mockResolvedValue(
+        mockResult,
+      );
 
-            expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.UNAUTHORIZED);
-        });
+      await listData(mockRequest as Request, mockResponse as Response);
+
+      expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.OK);
+      expect(mockResponse.json).toHaveBeenCalledWith(mockResult.body);
     });
 
-    describe('listData', () => {
-        it('should list data successfully', async () => {
-            mockRequest.query = { token: 'token123' };
+    it('should handle missing token', async () => {
+      mockRequest.query = {};
 
-            const mockResult = {
-                status: HttpStatus.OK,
-                body: [{ id: 1, data: 'test' }]
-            };
+      const mockResult = {
+        status: HttpStatus.BAD_REQUEST,
+        body: { error: 'Token is required' },
+      };
 
-            (ExtractionDataService.listData as jest.Mock).mockResolvedValue(mockResult);
+      (ExtractionDataService.listData as jest.Mock).mockResolvedValue(
+        mockResult,
+      );
 
-            await listData(
-                mockRequest as Request,
-                mockResponse as Response
-            );
+      await listData(mockRequest as Request, mockResponse as Response);
 
-            expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.OK);
-            expect(mockResponse.json).toHaveBeenCalledWith(mockResult.body);
-        });
-
-        it('should handle missing token', async () => {
-            mockRequest.query = {};
-
-            const mockResult = {
-                status: HttpStatus.BAD_REQUEST,
-                body: { error: 'Token is required' }
-            };
-
-            (ExtractionDataService.listData as jest.Mock).mockResolvedValue(mockResult);
-
-            await listData(
-                mockRequest as Request,
-                mockResponse as Response
-            );
-
-            expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.BAD_REQUEST);
-        });
+      expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.BAD_REQUEST);
     });
+  });
 });

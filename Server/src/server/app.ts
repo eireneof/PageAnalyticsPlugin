@@ -26,11 +26,11 @@ const corsOptions = {
     'User-Agent',
     'sec-ch-ua',
     'sec-ch-ua-mobile',
-    'sec-ch-ua-platform'
+    'sec-ch-ua-platform',
   ],
   credentials: true,
   optionsSuccessStatus: 204,
-  maxAge: 86400 // 24 hours
+  maxAge: 86400, // 24 hours
 };
 
 // Apply CORS before routes

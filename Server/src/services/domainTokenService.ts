@@ -29,7 +29,11 @@ export class DomainTokenService {
       }
 
       const newToken = TokenGenerator.generate();
-      const newData: Partial<IDomainToken> = { domain, tokens: [newToken], createdAt: new Date() };
+      const newData: Partial<IDomainToken> = {
+        domain,
+        tokens: [newToken],
+        createdAt: new Date(),
+      };
       const { error } = DomainTokenValidator.validate(newData);
 
       if (error) {

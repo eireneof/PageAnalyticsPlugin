@@ -8,7 +8,4 @@ const DomainTokenSchema = new Schema<IDomainToken>({
   createdAt: { type: Date, default: new Date() },
 });
 
-export default mongoose.model<IDomainToken>(
-  'DomainsTokens',
-  DomainTokenSchema,
-);
+export default mongoose.model<IDomainToken>('DomainsTokens', DomainTokenSchema);
