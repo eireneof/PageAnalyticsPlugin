@@ -21,10 +21,8 @@ function App() {
 
 export default App
 
-
 // TODO: 3 - definir padrão de projeto
 // TODO: 4 - teste unitário
-
 
 // TODO: refatorar para atomic desing
 // TODO: separar em styles, interfaces e etc
