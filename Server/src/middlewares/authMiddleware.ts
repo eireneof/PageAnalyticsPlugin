@@ -15,8 +15,9 @@ export const verifyToken = async (
   }
 
   const token = req.headers.authorization.toString().trim();
+  const isvalid = await isValidToken(token);
 
-  if (!(await isValidToken(token))) {
+  if (!isvalid) {
     res
       .status(HttpStatus.FORBIDDEN)
       .json({ error: 'Invalid or unauthorized token' });
@@ -27,5 +28,11 @@ export const verifyToken = async (
 
 async function isValidToken(token: string): Promise<boolean> {
   const tokenExist = await DomainTokenModel.find({ tokens: token }).lean();
-  return !!tokenExist;
+  return !!tokenExist.length;
 }
+
+// async function isAdminToken(token: string): Promise<boolean> {
+//   console.log('isAdminToken')
+//   const adminToken = await DomainTokenModel.find({ tokens: token, adminToken: true }).lean();
+//   return !!adminToken;
+// }

@@ -3,6 +3,7 @@ import { DomainTokenValidator } from '../utils/validators/domainTokenValidator';
 import { IServiceResult } from '../utils/interfaces/ServiceResultInterface';
 import { DomainTokenRepository } from '../repositories/domainTokenRepository';
 import { TokenGenerator } from '../utils/tokenGenerator';
+import { IDomainToken } from '../utils/interfaces/domainTokenInterface';
 
 export class DomainTokenService {
   static async generateToken(domain: string): Promise<IServiceResult> {
@@ -10,7 +11,7 @@ export class DomainTokenService {
       const existingDomain = await DomainTokenRepository.findByDomain(domain);
 
       if (existingDomain) {
-        if (existingDomain.tokens.length >= 2) {
+        if (existingDomain.tokens.length >= 1) {
           return {
             status: HttpStatus.BAD_REQUEST,
             body: { error: 'This domain already has the maximum tokens limit' },
@@ -28,7 +29,7 @@ export class DomainTokenService {
       }
 
       const newToken = TokenGenerator.generate();
-      const newData = { domain, tokens: [newToken], createdAt: new Date() };
+      const newData: Partial<IDomainToken> = { domain, tokens: [newToken], createdAt: new Date() };
       const { error } = DomainTokenValidator.validate(newData);
 
       if (error) {
