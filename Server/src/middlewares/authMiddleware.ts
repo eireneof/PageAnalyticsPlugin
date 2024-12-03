@@ -15,9 +15,9 @@ export const verifyToken = async (
   }
 
   const token = req.headers.authorization.toString().trim();
-  const domain = req.headers.domain?.toString()?.trim() || '';
+  const domain = req.headers.domain?.toString()?.trim() ?? '';
 
-  if (!isValidToken(domain, token)) {
+  if (!(await isValidToken(domain, token))) {
     res
       .status(HttpStatus.FORBIDDEN)
       .json({ error: 'Invalid or unauthorized token' });

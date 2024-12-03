@@ -5,7 +5,7 @@ export const collectData = async (
   req: Request,
   res: Response,
 ): Promise<void> => {
-  const token = req.header('Authorization')?.toString()?.trim() || '';
+  const token = req.header('Authorization')?.toString()?.trim() ?? '';
   const result = await ExtractionDataService.collectData(req.body, token);
   res.status(result.status).json(result.body);
 };
