@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import Profile from '../components/Profile';
+import Profile from '../components/templates/Profile';
 
 test('renders profile component', () => {
   const { getByText } = render(<Profile />);

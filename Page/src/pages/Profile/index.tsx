@@ -1,22 +1,19 @@
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
-import Posts from "../../components/Posts";
-import Profile from "../../components/Profile";
-import Projects from "../../components/Projects";
-
-interface ProfilePageProps {
-  onToggleTheme: () => void;
-}
+import Button from '../../components/atoms/Button'
+import Footer from '../../components/molecules/Footer'
+import Header from '../../components/molecules/Header'
+import Profile from '../../components/templates/Profile'
+import { ProfilePageProps } from './interface'
+import { ButtonContainer } from './styles'
 
 export default function ProfilePage({ onToggleTheme }: ProfilePageProps) {
   return (
     <>
       <Header />
+      <ButtonContainer>
+        <Button onClick={onToggleTheme}>Alternar Tema</Button>
+      </ButtonContainer>
       <Profile />
-      <Projects />
-      <Posts />
-      <button onClick={onToggleTheme}>Alternar Tema</button>
       <Footer />
     </>
-  );
+  )
 }
