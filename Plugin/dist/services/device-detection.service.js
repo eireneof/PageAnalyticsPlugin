@@ -2,19 +2,19 @@ export default class DeviceDetectionService {
     getDeviceType() {
         const userAgent = navigator.userAgent;
         if (/android/i.test(userAgent))
-            return 'android';
+            return "android";
         if (/iPad|iPhone|iPod/.test(userAgent))
-            return 'ios';
-        return 'desktop';
+            return "ios";
+        return "desktop";
     }
     getOperatingSystem() {
         const userAgent = navigator.userAgent;
         if (/Windows/.test(userAgent))
-            return 'Windows';
+            return "Windows";
         if (/Mac/.test(userAgent))
-            return 'MacOS';
+            return "MacOS";
         if (/Linux/.test(userAgent))
-            return 'Linux';
-        return 'Unknown';
+            return "Linux";
+        return "Unknown";
     }
 }

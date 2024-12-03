@@ -16,11 +16,11 @@ export class DataExtractorButton {
         this.themeService = new ThemeSwitchService();
     }
     initializeButton() {
-        this.button = document.createElement('button');
+        this.button = document.createElement("button");
         const config = {
-            text: 'Extrair Dados',
-            ariaLabel: 'Extrair dados da página',
-            title: 'Clique para extrair dados da página atual'
+            text: "Extrair Dados",
+            ariaLabel: "Extrair dados da página",
+            title: "Clique para extrair dados da página atual",
         };
         this.button.textContent = config.text;
         this.styleService.applyStyles(this.button);
@@ -34,7 +34,7 @@ export class DataExtractorButton {
             device: this.deviceService.getDeviceType(),
             operatingSystem: this.deviceService.getOperatingSystem(),
             origin: window.location.host,
-            themeSwitchCount: this.themeService.getCurrentCount()
+            themeSwitchCount: this.themeService.getCurrentCount(),
         };
     }
     async handleButtonClick() {
@@ -45,39 +45,39 @@ export class DataExtractorButton {
             const result = await this.collectDataService.saveData(data);
             if (result.ok) {
                 const resultBody = await result.json();
-                this.updateButtonState('success');
+                this.updateButtonState("success");
                 alert(`Dados salvos com sucesso: ${resultBody.id}`);
                 console.log(resultBody);
             }
             else {
                 alert(`Erro ao salvar os dados`);
-                this.updateButtonState('error');
+                this.updateButtonState("error");
             }
         }
         catch (error) {
             alert(`Erro ao salvar os dados`);
-            console.error('Erro ao extrair dados:', error);
-            this.updateButtonState('error');
+            console.error("Erro ao extrair dados:", error);
+            this.updateButtonState("error");
         }
     }
     updateButtonState(state) {
         this.button.disabled = true;
-        this.button.style.cursor = 'not-allowed';
-        this.button.style.opacity = '0.7';
-        if (state === 'success') {
-            this.button.style.backgroundColor = '#45a049';
-            this.button.textContent = '✓ Dados Extraídos';
+        this.button.style.cursor = "not-allowed";
+        this.button.style.opacity = "0.7";
+        if (state === "success") {
+            this.button.style.backgroundColor = "#45a049";
+            this.button.textContent = "✓ Dados Extraídos";
         }
         else {
-            this.button.style.backgroundColor = '#ff4444';
-            this.button.textContent = '❌ Erro';
+            this.button.style.backgroundColor = "#ff4444";
+            this.button.textContent = "❌ Erro";
         }
         setTimeout(() => {
-            this.button.style.backgroundColor = '#4CAF50';
-            this.button.textContent = 'Extrair Dados';
+            this.button.style.backgroundColor = "#4CAF50";
+            this.button.textContent = "Extrair Dados";
             this.button.disabled = false;
-            this.button.style.cursor = 'pointer';
-            this.button.style.opacity = '1';
+            this.button.style.cursor = "pointer";
+            this.button.style.opacity = "1";
         }, 3000);
     }
 }
