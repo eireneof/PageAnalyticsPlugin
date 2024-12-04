@@ -44,10 +44,6 @@ export class DataExtractor {
             this.updateButtonState('error');
         }
     }
-    // TODO: tratar timezone
-    // TODO: trocar portas estáticas por portas configuradas no .env
-    // TODO: criar superToken para funcionarem independente de domínio
-    // TODO: ajustar tratativa de token para permitir apenas 1 por domínio
     async saveData2(data) {
         const url = 'http://localhost:3001/api/collect'; // URL da API
         const token = '9432c3271314caaa5f29f248cf4513fb0f341a2864981b3cda69052c526ded97'; // Token Bearer

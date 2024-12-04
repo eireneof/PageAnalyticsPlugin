@@ -1,6 +1,5 @@
 import { ExtractedData } from "../interfaces/extracted-data.interface";
 
-//TODO: comolocar variáveis de ambiente aqui
 
 export class CollectDataService {
   async saveData(data: ExtractedData): Promise<any> {

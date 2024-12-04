@@ -3,7 +3,6 @@ export default class ThemeSwitchService {
   private button!: HTMLElement | null;
 
   constructor() {
-    // TODO: em guia anônima essa solução não funciona
     window.onload = () => {
       this.button = document.getElementById("theme-switch-button");
       this.setupClickListener();

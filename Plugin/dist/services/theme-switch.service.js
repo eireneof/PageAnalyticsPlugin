@@ -2,7 +2,6 @@ export default class ThemeSwitchService {
     STORAGE_KEY = "theme-switch-count";
     button;
     constructor() {
-        // TODO: em guia anônima essa solução não funciona
         window.onload = () => {
             this.button = document.getElementById("theme-switch-button");
             this.setupClickListener();

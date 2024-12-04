@@ -1,4 +1,4 @@
-//TODO: comolocar variáveis de ambiente aqui
+
 export class CollectDataService {
     async saveData(data) {
         const url = "http://localhost:3001/api/collect";

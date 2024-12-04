@@ -18,6 +18,3 @@ export default function App() {
     </ThemeProvider>
   )
 }
-
-// TODO: mockar dados
-// TODO: deixar tema armazenado em contexto
