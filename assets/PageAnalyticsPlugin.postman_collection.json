@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "889e0b9f-d128-4470-b4b7-3e0c0ce4a484",
+		"name": "PageAnalyticsPlugin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27061891"
+	},
+	"item": [
+		{
+			"name": "Collect Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device\": \"desktop\",\r\n    \"operatingSystem\": \"Windows\",\r\n    \"origin\": \"eirene3.com\",\r\n    \"themeSwitchCount\": 7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url_base_page_analytics_plugin}}/collect"
+			},
+			"response": []
+		},
+		{
+			"name": "List Token's Collected Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_base_page_analytics_plugin}}/list?token=9f96006aff29c22de5c8240fa51e811c46d387aa1f3fa0bf410f8b03da148709",
+					"host": [
+						"{{url_base_page_analytics_plugin}}"
+					],
+					"path": [
+						"list"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "9f96006aff29c22de5c8240fa51e811c46d387aa1f3fa0bf410f8b03da148709"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Domain Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "{{url_base_page_analytics_plugin}}/generate-token"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

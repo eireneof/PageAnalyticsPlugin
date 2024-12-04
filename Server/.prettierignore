@@ -1,0 +1,15 @@
+# Ignore artifacts:
+build
+coverage
+dist
+node_modules
+.eslintrc.js
+*.config.js
+*.config.cjs
+*.config.mjs
+public
+.tmp
+.vscode
+.DS_Store
+.env
+.env.*
